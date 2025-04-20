@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Nilai Siswa</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Data Nilai Siswa</h1>
+        <div>
+            {{ data_html|safe }}
+        </div>
+        <h2>Statistik</h2>
+        <ul>
+            <li>Rata-rata nilai: {{ stats.mean }}</li>
+            <li>Nilai tertinggi: {{ stats.max }}</li>
+            <li>Nilai terendah: {{ stats.min }}</li>
+        </ul>
+        <h3>Siswa dengan nilai tertinggi:</h3>
+        <ul>
+            {% for student in stats.max_students %}
+            <li>{{ student['nama'] }} - {{ student['nilai'] }}</li>
+            {% endfor %}
+        </ul>
+        <h3>Siswa dengan nilai terendah:</h3>
+        <ul>
+            {% for student in stats.min_students %}
+            <li>{{ student['nama'] }} - {{ student['nilai'] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
